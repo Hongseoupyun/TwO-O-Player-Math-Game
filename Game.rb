@@ -13,6 +13,16 @@ class Game
     @player1.lives == 0 || @player2.lives == 0
   end
 
+  def winner? 
+    if @player1.lives == 0 
+      puts "#{@player2.name} wins with the score of #{@player2.lives}"
+      puts "Game over"
+    else
+      puts "#{@player1.name} wins with the score of #{@player1.lives}"
+      puts "Game over"
+    end
+  end
+
   def start 
     
     puts "game started"
@@ -41,12 +51,7 @@ class Game
 
 
     end
-    if @player1.lives == 0 
-      puts "#{@player2.name} wins with the score of #{@player2.lives}"
-      puts "Game over"
-    else
-      puts "#{@player1.name} wins with the score of #{@player1.lives}"
-      puts "Game over"
-    end
+    
+    winner?
   end
 end
