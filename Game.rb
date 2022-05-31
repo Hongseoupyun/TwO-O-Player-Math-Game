@@ -9,16 +9,21 @@ class Game
     @player2 = Player.new("Andrea")
   end
 
-  def start 
-    puts "game started"
+  def game_over
+    @player1.lives == 0 || @player2.lives == 0
+  end
 
+  def start 
+    
+    puts "game started"
     current_player = @player1
 
-    while @player1.lives != 0 || @player2.lives != 0  do 
+    while !game_over do
       question = Question.new
+      puts("----New turn----")
       question.ask(current_player)
       player_answer = gets.chomp.to_i
-      puts question.validate(player_answer)
+      
       if question.validate(player_answer)
         puts "#{current_player.name}: Yes! You are correct!"
       else
@@ -31,40 +36,17 @@ class Game
        else 
         current_player = @player1
       end
-    
-      puts "P1:#{@player1.lives}/3 vs P2:#{@player2.lives}/3"
+
+      puts "#{@player1.name}:#{@player1.lives}/3 vs #{@player2.name}:#{@player2.lives}/3"
+
+
     end
-    
-    puts "Game over"
-
-    
-
-    
-
-
-    
-
+    if @player1.lives == 0 
+      puts "#{@player2.name} wins with the score of #{@player2.lives}"
+      puts "Game over"
+    else
+      puts "#{@player1.name} wins with the score of #{@player1.lives}"
+      puts "Game over"
+    end
   end
-
-  
-
-
-
-  
-
-
-
-  #method
-
-  #1.start the game
-  #2.Ask qeustions
-  #3.Accepts inputs
-  #4.Validate the answers
-  #5.loop(ask and validate)
-  #6.end the game if one of the players has 0 life
-
-  
-
-
-  
 end
