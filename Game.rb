@@ -23,12 +23,17 @@ class Game
     end
   end
 
+  def display_score
+    puts "#{@player1.name}:#{@player1.lives}/3 vs #{@player2.name}:#{@player2.lives}/3"
+  end
+
   def start 
     
     puts "game started"
     current_player = @player1
 
     while !game_over do
+
       question = Question.new
       puts("----New turn----")
       question.ask(current_player)
@@ -40,18 +45,13 @@ class Game
         puts "#{current_player.name}: Wrong Answer!"
         current_player.lose_life
       end 
-
       if current_player == @player1
         current_player = @player2
        else 
         current_player = @player1
       end
-
-      puts "#{@player1.name}:#{@player1.lives}/3 vs #{@player2.name}:#{@player2.lives}/3"
-
-
+      display_score
     end
-    
     winner?
   end
 end
